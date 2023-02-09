@@ -3,5 +3,5 @@
   tasks:
     - name: Create S3 bucket
       s3_bucket:
-        name: demo-tf-1212
+        name: demo-tf-08-02-23
         state: present
