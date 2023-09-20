@@ -7,7 +7,7 @@ pipeline{
     stage('S3 - create bucket'){
       steps{
         script{
-          createS3Bucket('s3://demo-tf-12122022')
+          createS3Bucket('s3://demo-tf-08-02-23')
         }
       }
     }
