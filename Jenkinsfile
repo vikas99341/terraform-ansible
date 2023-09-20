@@ -7,20 +7,18 @@ pipeline{
     stage('S3 - create bucket'){
       steps{
         script{
-          getTerraformPath('demo-tf-12122022')
+          createS3Bucket('s3://demo-tf-12122022')
         }
       }
     }
     stage('terraform init and apply - dev'){
       steps{
         sh returnStatus: true, script: 'terraform workspace new dev'
-
- def getTerraformPath(){
-  
         sh "terraform init"
         sh "terraform apply -var-file=dev.tfvars -auto-approve"
       }
     }
+
     stage('terraform init and apply - prod'){
       steps{
         sh returnStatus: true, script: 'terraform workspace new prod'
@@ -30,6 +28,7 @@ pipeline{
     }
   }
 }
+
 def getTerraformPath(){
   def tfHome = tool name: 'terraform-server', type: 'terraform'
   return tfHome
